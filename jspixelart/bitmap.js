@@ -15,12 +15,12 @@ function Bitmap(w,h,palette,transparent) {
 		return this.pixels[y*this.w+x];
 	}
 	
-	this.draw=function(x,y,rx,ry,rw,rh,s) {
+	this.draw=function(x,y,rx,ry,rw,rh,s,pixelSize) {
 		for(var j=0;j<rh;j++) {
 			for(var i=0;i<rw;i++) {
 				var k=this.getPixel(i,j);
 				if(k!=this.transparent) {
-					FillRect(i*s+x,j*s+y,s,s,palette[k]);
+					FillRect(i*s+x,j*s+y,s,s,palette[k],pixelSize);
 				}
 			}
 		}

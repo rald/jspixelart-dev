@@ -1,10 +1,13 @@
 var SCREEN_WIDTH=512;
 var SCREEN_HEIGHT=512;
+var PIXEL_SIZE=2;
 
 var mouse=null;
 var input=null;
 
 var bitmap=null;
+
+
 
 function LoadTextFile(url, callback) {
 	var xhr = new XMLHttpRequest();
@@ -58,16 +61,15 @@ function LoadBitmap(url) {
 	return self.bitmap;
 }
 
-function DrawGrid(x,y,w,h,size,color) {
+function DrawGrid(x,y,w,h,size,color,pixelSize) {
 	for(var j=0;j<h;j++) {
 		for(var i=0;i<w;i++) {
-			DrawRect(x+i*size,y+j*size,size,size,color);
+			DrawRect(x+i*size,y+j*size,size,size,color,pixelSize);
 		}
 	}
 }
 
 function draw() {	
-	//	bitmap.draw(0,0,0,0,8,8);
 }
 
 function update() {
@@ -77,8 +79,6 @@ function update() {
 }
 
 (function init() {
-	pixelSize=2;
-	
 	mouse=new MouseManager(canvas);
 	input=new InputManager();
 	bitmap=LoadBitmap("bitmap.json");
@@ -86,9 +86,8 @@ function update() {
 	Screen(SCREEN_WIDTH,SCREEN_HEIGHT);		
 	ClearScreen(sweetie[0]);
 
-	bitmap.draw(0,0,0,0,8,8,32);
-	DrawGrid(0,0,8,8,32,"#000000");
+	bitmap.draw(0,0,0,0,8,8,32,PIXEL_SIZE);
+	DrawGrid(0,0,8,8,32,"#000000",PIXEL_SIZE);
 	
 	requestAnimationFrame(update);
 })();
-
