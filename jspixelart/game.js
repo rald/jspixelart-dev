@@ -6,9 +6,9 @@ var mouse=null;
 var input=null;
 var bitmap=null;
 
-function LoadTextFile(url, callback) {
+function loadTextFile(url, callback) {
 	var xhr = new XMLHttpRequest();
-
+	
 	// Configure the request: GET method, asynchronous (true)
 	xhr.open('GET', url, false);
 
@@ -28,10 +28,10 @@ function LoadTextFile(url, callback) {
 	xhr.send();
 }
 
-function LoadBitmap(url) {
+function loadBitmap(url) {
 	self=this;
 	self.bitmap=null;
-	LoadTextFile(url,function(err,txt) {
+	loadTextFile(url,function(err,txt) {
 		if(err) {
 			throw err;
 		} else {
@@ -58,7 +58,7 @@ function LoadBitmap(url) {
 	return self.bitmap;
 }
 
-function DrawGrid(x,y,w,h,size,color,pixelSize) {
+function drawGrid(x,y,w,h,size,color,pixelSize) {
 	for(var j=0;j<h;j++) {
 		for(var i=0;i<w;i++) {
 			DrawRect(x+i*size,y+j*size,size,size,color,pixelSize);
@@ -78,13 +78,15 @@ function update() {
 (function init() {
 	mouse=new MouseManager(canvas);
 	input=new InputManager();
-	bitmap=LoadBitmap("heart.json");
+	bitmap=loadBitmap("heart.json");
 
 	Screen(SCREEN_WIDTH,SCREEN_HEIGHT);		
 	ClearScreen(sweetie[0]);
 
 	bitmap.draw(0,0,0,0,8,8,32,PIXEL_SIZE);
-	DrawGrid(0,0,8,8,32,"#000000",PIXEL_SIZE);
+	drawGrid(0,0,8,8,32,"#000000",PIXEL_SIZE);
 	
 	requestAnimationFrame(update);
 })();
+
+
