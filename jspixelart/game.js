@@ -1,13 +1,10 @@
-var SCREEN_WIDTH=512;
-var SCREEN_HEIGHT=512;
-var PIXEL_SIZE=2;
+var SCREEN_WIDTH=256;
+var SCREEN_HEIGHT=256;
+var PIXEL_SIZE=1;
 
 var mouse=null;
 var input=null;
-
 var bitmap=null;
-
-
 
 function LoadTextFile(url, callback) {
 	var xhr = new XMLHttpRequest();
@@ -81,7 +78,7 @@ function update() {
 (function init() {
 	mouse=new MouseManager(canvas);
 	input=new InputManager();
-	bitmap=LoadBitmap("bitmap.json");
+	bitmap=LoadBitmap("heart.json");
 
 	Screen(SCREEN_WIDTH,SCREEN_HEIGHT);		
 	ClearScreen(sweetie[0]);
